@@ -1,0 +1,11 @@
+.noneDisplay{
+    display: none;
+}
+#createCont, #loginCont{
+    text-align: center;
+    padding: 20px;
+}
+#loginButton, #createButton{
+    width: 60%;
+    margin-bottom: 10px;
+}

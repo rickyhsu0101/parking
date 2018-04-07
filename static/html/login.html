@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Page Turner</title>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
+    <link rel="stylesheet" href="/static/css/navbar.css" type="text/css"> 
+    <link rel="stylesheet" href="/static/css/login_create.css" type = "text/css">
+</head>
+
+<body class="grey lighten-4">
+    <!--Import jQuery before materialize.js-->
+    <div class="navbar-fixed">
+        <nav class="grey darken-3">
+            <div class="nav-wrapper">
+                <a href="/" class="brand-logo">
+                    Park a Place
+                </a>
+                <a href="#" data-target="smallScreen" class="sidenav-trigger">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down">
+                    <li>
+                        <a href = "#" class = "wave-effect waves-teal btn-flat white-text" id = "login">Login</a>
+                    </li>
+                    <li>
+                        <div class="input-field center">
+                            <i class="white-text material-icons prefix">search</i>
+                            <input type="text" placeholder="Search" id="querySearch" class="white-text">
+                        </div>
+                    </li>
+                    
+                </ul>
+
+            </div>
+        </nav>
+    </div>
+    <ul class="sidenav" id="smallScreen">
+        <li>
+            <div class="input-field center" id="sideInput">
+                <i class="material-icons prefix">search</i>
+                <input type="text" placeholder="Search" id="querySearch2">
+            </div>
+            
+        </li>
+        <li>
+            <a href = "#" class = "wave-effect waves-teal btn-flat" id = "login2">Login</a>
+        </li>
+    </ul>
+
+    <div class = "container grey lighten-3 z-depth-4" id = "loginCont">
+        <div class = "row">
+            <form class = "col s12" id = "loginForm">
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input class = "validate" type = "email" id = "email">
+                        <label for = "email">Email</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input class = "validate" type = "password" id = "password">
+                        <label for = "password">Password</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col s12">
+                        <a href = "#" id = "loginButton" class = "waves-effect waves-light blue darken-3 btn-large">
+                            Login
+                        </a>
+                    </div>
+                    <div class = "col s12">
+                        <a href = "#" id = "createLink" class = "waves-effect waves-light">
+                            Create Account
+                        </a>
+                    </div>
+                </div>
+            </form>
+            <form class = "col s12 noneDisplay" id = "createForm">
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input class = "validate" type = "email" id = "emailCreate">
+                        <label for = "emailCreate">Email</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "input-field col s12">
+                        <input class = "validate" type = "password" id = "passwordCreate">
+                        <label for = "passwordCreate">Password</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col s12">
+                        <a href = "#" id = "createButton" class = "waves-effect waves-light blue darken-3 btn-large">
+                            Create Account
+                        </a>
+                    </div>
+                    <div class = "col s12">
+                        <a href = "#" id = "loginLink" class = "waves-effect waves-light">
+                            Login
+                        </a>
+                    </div>
+                    
+                </div>
+            </form>
+
+            <form class = "col s12 noneDisplay" id = "signoutForm">
+                <div class = "row">
+                    <h2>Welcome: </h2>
+                    <h4 id = "currentEmail"></h4>
+                </div>
+                <div class = "row">
+                    <div class = "col s12">
+                        <a href = "#" id = "logoutButton" class = "waves-effect waves-light blue darken-3 btn-large">
+                            Logout
+                        </a>
+                    </div>
+                    
+                    
+                </div>
+            </form>
+        </div>
+        
+    </div>
+    
+
+    
+
+    <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
+       
+    <script type="text/javascript" src="/static/js/login.js"></script>
+</body>
+
+</html>
