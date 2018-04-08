@@ -9,7 +9,10 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
-    <link rel="stylesheet" href="/static/css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/navbar.css" type="text/css"> 
+    <link rel="stylesheet" href="/static/css/lotImage.css" type="text/css">
+    <link rel="stylesheet" href="/static/css/seats.css" type = "text/css">
+    <link rel="stylesheet" href="/static/css/requestForm.css" type = "text/css">
 </head>
 <body class="grey lighten-4">
         <!--Import jQuery before materialize.js-->
@@ -51,37 +54,53 @@
             </li>
         </ul>
         
-        <div class = "container">
-            <div id = "lotNameDiv">
-                <h1 id = "lotName"></h1>
-            </div>
-            
-            <div class = "row">
-                <div class = "col s4">
-                    <img src = "/static/img/sampleLot.jpg" class = "materialboxed" id = "lotImage">
-                    <a class="waves-effect waves-light btn" id = "favoriteButton">Add to Favorite</a>
-                </div>
-                <div class = "col s8" id = "seatsContainer">
-                    <div id = "seatsLabel"><h2>Seats</h2></div>
-                    
-                    
-                    <div id = "seatDiv">
-
-                    </div>
-                </div>
-
-            </div>
+        
         </div>
         
-        <script id = "slot-template" type= "text/x-handlebars-template">
-            <a class = "slot" href = "#">
+        <div class = "container noneDisplay" id = "newLotForm">
+            <h1>Register new Lot</h1>
+            <form>
                 <div class = "row">
-                    <div class = "col s4 seatId">
-                        <h4 class = "seat">{{seatId}}</h4>
+                    <div class = "col s12 m6 formElementDiv">
+                        <input type= "text" id ="nameField">
+                        <label for="nameField">Name</label>
+                    </div>
+                    <div class = "col s12 m6 formElementDiv">
+                        <input type= "text" id ="addressField">
+                        <label for="addressField">Street Address</label>
                     </div>
                 </div>
-            </a>
-        </script>
+                <div class = "row">
+                    <div class = "col s12 formElementDiv">
+                        <input type = "number" id = "rateField">
+                        <label for = "rateField">Rate ($/hr)</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col s6 formElementDiv">
+                        <input type = "text" id = "identifyField">
+                        <label for = "identifyField">Identifier (e.g. A)</label>
+                    </div>
+                    <div class = "col s3 formElementDiv">
+                        <input type = "number" id = "startIndex">
+                        <label for = "startIndex">Start Index</label>
+                    </div>
+                    <div class = "col s3 formElementDiv">
+                        <input type = "number" id = "endIndex">
+                        <label for = "endIndex">End Index</label>
+                    </div>
+                </div>
+                <div class = "row">
+                    <div class = "col s6">
+                        <a class = "waves-effect waves-light btn formButton" id = "registerButton">Register</a>
+                    </div>
+                    <div class = "col s6">
+                        <a class = "waves-effect waves-light btn formButton" id = "cancelButton">Cancel</a>
+                    </div>
+                </div>
+            </form>
+        </div>
+        
         <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
         <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>    

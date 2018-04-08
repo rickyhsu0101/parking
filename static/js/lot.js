@@ -46,8 +46,8 @@ $(window).keydown(function(event){
 $(document).ready(function(){
     $('.materialboxed').materialbox();
     $('select').formSelect();
-    $("#lotName").text(localStorage.getItem("selectedLot"));
-    setUpSlots(localStorage.getItem("selectedLot"));
+    $("#lotName").text(sessionStorage.getItem("selectedLot"));
+    setUpSlots(sessionStorage.getItem("selectedLot"));
 });
 var seat = null;
 $(document).on("click", ".slot", function(){
@@ -56,7 +56,7 @@ $(document).on("click", ".slot", function(){
     $("#startSelect option:not(#default)").each(function(){
         $(this).removeClass("disabled");
     });
-    database.ref("parking/" + localStorage.getItem("selectedLot") + "/slots/" + seat).once("value", function(snapshot){
+    database.ref("parking/" + sessionStorage.getItem("selectedLot") + "/slots/" + seat).once("value", function(snapshot){
         var data = snapshot.val();
         $.each(data, function(key, value){
             if(value.status == "reserved"){
@@ -95,7 +95,7 @@ $(document).on("change", "#startSelect", function(){
 $("#reserveButton").on("click", function(){
     var startIndexInc = parseInt($("#startSelect").find(":selected").val());
     var endIndexExc = parseInt($("#endSelect").find(":selected").val());
-    database.ref("parking/" + localStorage.getItem("selectedLot")+"/slots/"+seat).once("value", function(snapshot){
+    database.ref("parking/" + sessionStorage.getItem("selectedLot")+"/slots/"+seat).once("value", function(snapshot){
         console.log(seat);
         console.log(snapshot);
         var data = snapshot.val();
@@ -104,18 +104,18 @@ $("#reserveButton").on("click", function(){
             data[""+i].status = "reserved";
             data[""+i].user = currentUser.email;
         }
-        database.ref("parking/" + localStorage.getItem("selectedLot")+"/slots/"+seat).set(data);
+        database.ref("parking/" + sessionStorage.getItem("selectedLot")+"/slots/"+seat).set(data);
     });
     database.ref("users/" + currentUser.email.split(".")[0]).once("value", function(snapshot){
         var data = snapshot.val();
         var date = moment().format('MM-DD-YY') + " ";
         date += $("#startSelect option[value='"+startIndexInc+"']").text();
-        database.ref("parking/" + localStorage.getItem("selectedLot")).once("value", function(snapshot){
+        database.ref("parking/" + sessionStorage.getItem("selectedLot")).once("value", function(snapshot){
             var rate = snapshot.val().rate;
             data.currentRes[date] = {
                 amountDue: rate*(endIndexExc-startIndexInc),
                 duration: endIndexExc-startIndexInc,
-                lotName: localStorage.getItem("selectedLot")
+                lotName: sessionStorage.getItem("selectedLot")
             }
             database.ref("users/" + currentUser.email.split(".")[0]).set(data);
             $("#first").removeClass("noneDisplay");

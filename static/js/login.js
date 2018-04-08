@@ -36,6 +36,10 @@ auth.onAuthStateChanged(function(user){
                 $("#favorites").removeClass("noneDisplay");
                 generateReviews(data.reviews);
                 $("#reviews").removeClass("noneDisplay");
+                if(data.accountType == "Lot Owner"){
+                    generateLot(data.lot);
+                    $("#parkingLots").removeClass("noneDisplay");
+                }
             });
             currentUser = user;
         }
@@ -54,10 +58,12 @@ function resetAccountInfo(){
     $("#history").addClass("noneDisplay");
     $("#favorites").addClass("noneDisplay");
     $("#reviews").addClass("noneDisplay");
+    $("#parkingLots").addClass("noneDisplay");
     $("#reservationContent").empty();
     $("#historyContent").empty();
     $("#favoriteContent").empty();
     $("#reviewsContent").empty();
+    $("#parkingContent").empty();
 }
 function generateCurrentReservation(data){
     var source = $("#currentRes-template").html();
@@ -112,13 +118,6 @@ function generateFavorites(data){
                 var data = snapshot.val();
                 context.location = data.location;
                 context.rate = data.rate;
-                var slotsOpen = 0;
-                $.each(data.slots, function(key, value){
-                    if(value.status == "open"){
-                        slotsOpen++;
-                    }
-                });
-                context.open = slotsOpen;
                 var html = template(context);
                 $("#favoriteContent").append(html);
             });
@@ -138,6 +137,22 @@ function generateReviews(data){
             };
             var html = template(context);
             $("#reviewsContent").append(html);
+        }
+    });
+}
+function generateLot(data){
+    var source = $("#parkingLots-template").html();
+    var template = Handlebars.compile(source);
+    $.each(data, function(key, value){
+        console.log(value);
+        if(key!="dummy"){
+            var context = {
+                lot: key,
+                location: value.address,
+                rate: value.rate + "/hr",
+            }
+            var html = template(context);
+            $("#parkingContent").append(html);
         }
     });
 }
@@ -212,8 +227,8 @@ $("#loginButton").on("click", login);
 $("#logoutButton").on("click",logout);
 
 $(document).on("click", ".visit", function(){
-    sessionStorage.setItem("parkingLot", $(this).attr("data-parkingLot"));
-     open("/parkingLot", "_self");    
+    sessionStorage.setItem("selectedLot", $(this).attr("data-parkingLot"));
+     open("/lot", "_self");    
 });
 $(document).on("click", ".remove", function(){
     var lotName = $(this).attr("data-remove");

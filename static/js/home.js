@@ -25,7 +25,7 @@ $("#login, #login2").on("click", function(){
 $(document).on("keyup", function(e){
     e.preventDefault();
     if((e.key === "Enter")&& $("#querySearch").val().length > 0){
-        localStorage.setItem("query", $("#querySearch").val());
+        sessionStorage.setItem("query", $("#querySearch").val());
         open("/search", "_self");
     }
 });

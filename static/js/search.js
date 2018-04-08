@@ -36,7 +36,7 @@ $("#login, #login2").on("click", function(){
     open("/login", "_self");
 });
 $(document).ready(function(){
-    performSearch(localStorage.getItem("query"));
+    performSearch(sessionStorage.getItem("query"));
 });
 function performSearch(searchString){
     $("#results").empty();
@@ -74,7 +74,7 @@ function placesAPICall(location){
     var queryBase = "https://cors-anywhere.herokuapp.com/https://maps.googleapis.com/maps/api/place/textsearch/json?";
     var apiKey = "AIzaSyADdit8FiUeJ3wyTLLyyjK7fa6-NSD1tK4";
 
-    var searchString = localStorage.getItem("query");
+    var searchString = sessionStorage.getItem("query");
     var q = queryBase + "key=" + apiKey;
     q += "&query=parking";
     q += "&location=" + location.lat + "," + location.lng;
@@ -115,7 +115,7 @@ $(document).on("keyup", function(e){
     }
 });
 $(document).on("click", ".result", function(){
-    localStorage.setItem("selectedLot", $(this).find("h4").text());
+    sessionStorage.setItem("selectedLot", $(this).find("h4").text());
     open("/lot", "_self");
 });
 $(window).keydown(function(event){
