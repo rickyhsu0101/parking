@@ -1,0 +1,59 @@
+#cover{
+    width: 100%;
+    filter: brightness(50%);
+}
+#containerCover{
+    text-align: center;
+}
+#imageWrapper{
+    position: relative;
+    width: 100%;
+}
+#statement1{
+    width: 100%;
+    position: absolute;
+    top: 5%;
+    color: white;
+    font-family: 'Do Hyeon';
+}
+#textWrapper1{
+    margin: auto;
+    text-align: center;
+}
+#statement2{
+    width: 100%;
+    position: absolute;
+    top: 20%;
+    color: white;
+    font-family: 'Do Hyeon';
+}
+#textWrapper2{
+    margin: auto;
+    text-align: center;
+}
+#searchWrapper{
+    width: 100%;
+    position: absolute;
+    top: 60%;
+}
+#searchForm{
+    padding: 0 10%;
+    font-family: 'Do Hyeon';
+}
+#searchForm .input-field{
+    background-color: rgb(214, 214, 214, 0.75);
+    border-style: none;
+}
+#searchForm .input-field:hover{
+    background-color: rgb(214, 214, 214, 1);
+}
+
+h4{
+    font-size:  4em;
+}
+h6{
+    font-size: 2em;
+}
+.noneDisplay{
+    display: none;
+}

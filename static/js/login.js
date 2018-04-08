@@ -208,3 +208,9 @@ $(document).on("click", ".remove", function(){
         element.parent().parent().parent().remove();
     }); 
 });
+$("#querySearch2").on("input", function(){
+    $("#querySearch").val($("#querySearch2").val());
+});
+$("#querySearch").on("input", function(){
+    $("#querySearch2").val($("#querySearch").val());
+});
