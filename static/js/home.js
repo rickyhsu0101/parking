@@ -23,8 +23,10 @@ $("#login, #login2").on("click", function(){
     open("/login", "_self");
 });
 $(document).on("keyup", function(e){
+    e.preventDefault();
     if((e.key === "Enter")&& $("#querySearch").val().length > 0){
-        localStorage.setItem("query", $("querySearch").val());
+        localStorage.setItem("query", $("#querySearch").val());
+        open("/search", "_self");
     }
 });
 var config = {
@@ -47,5 +49,10 @@ auth.onAuthStateChanged(function(user){
         }
     }else{
         $("#login, #login2").text("Login");
+    }
+});
+$(window).keydown(function(event){
+    if(event.keyCode ==13){
+        event.preventDefault();
     }
 });

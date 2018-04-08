@@ -6,4 +6,8 @@
 }
 .navbar-fixed{
     margin-bottom: 20px;
+
+}
+.nav-wrapper{
+    border-bottom: 4px solid rgb(90, 17, 17);
 }

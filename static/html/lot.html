@@ -10,8 +10,6 @@
     <!--Import materialize.css-->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/css/materialize.min.css">
     <link rel="stylesheet" href="/static/css/navbar.css" type="text/css"> 
-    <link rel="stylesheet" href="/static/css/searchForm.css" type="text/css">
-    <link rel="stylesheet" href="/static/css/result.css" type = "text/css">
 </head>
 <body class="grey lighten-4">
         <!--Import jQuery before materialize.js-->
@@ -53,22 +51,12 @@
             </li>
         </ul>
         
-        <div class = "container" id = "searchContainer">
-            <form id = "searchForm">
-                <div class = "input-field ">
-                    <i class = "material-icons prefix">search</i></label>
-                    <input id = "search" type = "text">
-                </div>
-            </form>
-        </div>
-        <div class = "container" id = "results">
-            
-        </div>
-        <script id = "result-template" type= "text/x-handlebars-template">
-            <a class = "result" href = "#">
+        
+        <script id = "slot-template" type= "text/x-handlebars-template">
+            <a class = "slot" href = "#" data-status="{{status}}">
                 <h4>{{name}}</h4>
                 <hr>
-                <h6>{{address}}</h6>
+                <h6>{{status}}</h6>
             </a>
         </script>
         <script src="https://www.gstatic.com/firebasejs/4.11.0/firebase.js"></script>
@@ -76,6 +64,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>    
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js"></script>
         <script src = "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"></script>
-        <script src = "/static/js/search.js"></script>
+        <script src = "/static/js/lot.js"></script>
     </body>
     </html>

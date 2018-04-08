@@ -1,0 +1,11 @@
+#searchForm .input-field{
+    background-color: white;
+    border: 5px solid rgb(187, 187, 187);
+    padding-left: 4px;
+    padding-right: 10px;
+    border-radius: 10px;
+    
+}
+#searchContainer{
+    margin-top: 80px;
+}
