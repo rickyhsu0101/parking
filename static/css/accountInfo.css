@@ -1,0 +1,11 @@
+.accountGeneral{
+    padding: 20px;
+    margin-top: 20px;
+}
+.accountGeneral h1{
+    margin-top: 0;
+    text-align: center;
+}
+p{
+    margin-top: 0;
+}

@@ -1,5 +1,6 @@
 $(document).ready(function(){
     $('.sidenav').sidenav();
+    $('.collapsible').collapsible();
   });
 var config = {
     apiKey: "AIzaSyCJ8dUGpXA1TwSk7DZncx3XLSYuCKvNwSE",
@@ -9,6 +10,7 @@ var config = {
     storageBucket: "parking-40a6e.appspot.com",
     messagingSenderId: "310491178257"
 };
+var currentUser = null;
 firebase.initializeApp(config);
 var database = firebase.database();
 var auth = firebase.auth();
@@ -21,14 +23,116 @@ auth.onAuthStateChanged(function(user){
             $("#loginForm").addClass("noneDisplay");
             $("#signoutForm").removeClass("noneDisplay");
             $("#login, #login2").text(email);
+            database.ref("users/" + email.split(".")[0]).once("value", function(snapshot){
+                var data = snapshot.val();
+                $("#emailInfo").text(email);
+                $("#account").text(data.accountType);
+                $("#accountInfo").removeClass("noneDisplay");
+                generateCurrentReservation(data.currentRes);
+                $("#reservation").removeClass("noneDisplay");
+                generateHistory(data.history);
+                $("#history").removeClass("noneDisplay");
+                generateFavorites(data.favorite);
+                $("#favorites").removeClass("noneDisplay");
+                generateReviews(data.reviews);
+                $("#reviews").removeClass("noneDisplay");
+            });
+            currentUser = user;
         }
     }else{
         $("#createForm").addClass("noneDisplay");
         $("#loginForm").removeClass("noneDisplay");
         $("#signoutForm").addClass("noneDisplay");
         $("#login, #login2").text("Login");
+        currentUser = null;
+        resetAccountInfo();
     }
 });
+function resetAccountInfo(){
+    $("#accountInfo").addClass("noneDisplay");
+    $("#reservation").addClass("noneDisplay");
+    $("#history").addClass("noneDisplay");
+    $("#favorites").addClass("noneDisplay");
+    $("#reviews").addClass("noneDisplay");
+    $("#reservationContent").empty();
+    $("#historyContent").empty();
+    $("#favoriteContent").empty();
+    $("#reviewsContent").empty();
+}
+function generateCurrentReservation(data){
+    var source = $("#currentRes-template").html();
+    var template = Handlebars.compile(source);
+    $.each(data, function(key, value){
+        var context = { 
+            time: key,
+            lotName: value.lotName,
+            duration: value.duration + " min",
+            amountDue: "$" + value.amountDue
+        };
+        var html = template(context);
+        $("#reservationContent").append(html);
+    });
+}
+function generateHistory(data){
+    var source = $("#history-template").html();
+    var template = Handlebars.compile(source);
+    $.each(data, function(key, value){
+        var context = {
+            time: key,
+            lotName: value.lotName,
+            duration: value.duration + " min",
+            amountDue: "$" + value.amountDue
+        }
+        if(value.paid){
+            context.paid = "true";
+        }else{
+            context.paid = "false";
+        }
+        var html = template(context);
+        $("#historyContent").append(html);
+    });
+    
+}
+function generateFavorites(data){
+    var source = $("#favorites-template").html();
+    var template = Handlebars.compile(source);
+    $.each(data, function(key, value){
+        if(key!= "default"){
+            var context = {
+                lot: key,
+                visited: value.visited
+            };
+            database.ref("parking/" + key).once("value", function(snapshot){
+                var data = snapshot.val();
+                context.location = data.location;
+                context.rate = data.rate;
+                var slotsOpen = 0;
+                $.each(data.slots, function(key, value){
+                    if(value.status == "open"){
+                        slotsOpen++;
+                    }
+                });
+                context.open = slotsOpen;
+                var html = template(context);
+                $("#favoriteContent").append(html);
+            });
+        }
+    });
+}
+function generateReviews(data){
+    var source = $("#reviews-template").html();
+    var template = Handlebars.compile(source);
+    $.each(data, function(key, value){
+        var context = {
+            time: key,
+            lotName: value.parkingLot,
+            duration: value.duration,
+            comment: value.comment
+        };
+        var html = template(context);
+        $("#reviewsContent").append(html);
+    });
+}
 function login(){
     var email = $("#email").val();
     var password = $("#password").val();
@@ -88,3 +192,19 @@ $("#loginLink").on("click", function(){
 $("#createButton").on("click", create);
 $("#loginButton").on("click", login);
 $("#logoutButton").on("click",logout);
+
+$(document).on("click", ".visit", function(){
+    sessionStorage.setItem("parkingLot", $(this).attr("data-parkingLot"));
+     open("/parkingLot", "_self");    
+});
+$(document).on("click", ".remove", function(){
+    var lotName = $(this).attr("data-remove");
+    var element = $(this);
+    var data = null;
+    database.ref("users/" + currentUser.email.split(".")[0] + "/favorite").once("value", function(snapshot){
+        data = snapshot.val();
+        delete data[lotName];
+        database.ref("users/" + currentUser.email.split(".")[0] + "/favorite/" + lotName).remove();
+        element.parent().parent().parent().remove();
+    }); 
+});

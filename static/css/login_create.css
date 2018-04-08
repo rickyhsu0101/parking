@@ -5,7 +5,7 @@
     text-align: center;
     padding: 20px;
 }
-#loginButton, #createButton{
+#loginButton, #createButton, #logoutButton{
     width: 60%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
