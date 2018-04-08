@@ -15,5 +15,8 @@ app.get("/search", function(req, res){
 app.get("/lot", function(req, res){
     res.sendFile(path.join(__dirname, "/static/html/lot.html"));
 });
+app.get("/newLot", function(req, res){
+    res.sendFile(path.join(__dirname, "/static/html/newLot.html"));
+})
 app.use("/static", express.static(path.join(__dirname, "/static")));
 app.listen(8082);

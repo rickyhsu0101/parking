@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="/static/css/navbar.css" type="text/css"> 
     <link rel="stylesheet" href = "/static/css/frontCover.css" type = "text/css">
 </head>
-<body class="grey lighten-4">
+<body >
     <!--Import jQuery before materialize.js-->
     <div class="navbar-fixed">
         <nav class="grey darken-3">
@@ -54,7 +54,7 @@
 
     <div class = "container" id = "containerCover">
         <div id = "imageWrapper" class = "noneDisplay">
-            <img src = "/static/img/parking.jpg" id = "cover">
+            <img src = "/static/img/parking.jpg" id = "cover" class = "z-depth-4">
             <div id = "statement1" class="noneDisplay">
                 <div id = "textWrapper1">
                         <h4>Are YOU tired of searching for parking space?</h4>
@@ -70,7 +70,7 @@
                 <form id = "searchForm">
                     <div class = "input-field ">
                         <i class = "material-icons prefix">search</i></label>
-                        <input id = "search" type = "text">
+                        <input id = "search" type = "text" placeholder="Enter Street Address">
                     </div>
                 </form>
             </div>

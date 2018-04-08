@@ -1,0 +1,4 @@
+#registerButton, #cancelButton, #reserveButton{
+    display: block;
+    width: 100%;
+}

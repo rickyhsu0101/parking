@@ -11,3 +11,6 @@
 .nav-wrapper{
     border-bottom: 4px solid rgb(68, 68, 112);
 }
+body{
+    background-color: rgb(119, 119, 170);
+}

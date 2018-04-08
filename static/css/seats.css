@@ -6,7 +6,9 @@
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
 }
-
+form{
+    text-align: center;
+}
 .status{
     text-align: right;
 
@@ -27,6 +29,10 @@
 }
 #lotNameDiv{
     text-align: center;
+    color: white;
+    background-color: rgb(37, 37, 71);
+    padding: 5px;
+    border-radius: 10px;
 }
 #favoriteButton{
     display: block;
@@ -36,4 +42,13 @@
 }
 .noneDisplay{
     display: none;
+}
+form{
+    background-color: rgb(37, 37, 71);
+    color: white;
+    padding: 20px;
+    border-radius: 20px;
+}
+input, select, textarea{
+    color: white;
 }

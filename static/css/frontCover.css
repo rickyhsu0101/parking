@@ -1,6 +1,7 @@
 #cover{
     width: 100%;
     filter: brightness(50%);
+    border-radius: 20px;
 }
 #containerCover{
     text-align: center;
@@ -12,7 +13,7 @@
 #statement1{
     width: 100%;
     position: absolute;
-    top: 5%;
+    top: 10%;
     color: white;
     font-family: 'Do Hyeon';
 }
@@ -23,7 +24,7 @@
 #statement2{
     width: 100%;
     position: absolute;
-    top: 20%;
+    top: 30%;
     color: white;
     font-family: 'Do Hyeon';
 }
@@ -56,4 +57,7 @@ h6{
 }
 .noneDisplay{
     display: none;
+}
+input, select, textarea{
+    color: black;
 }

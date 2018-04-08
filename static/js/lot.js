@@ -60,6 +60,7 @@ $(document).on("click", ".slot", function(){
         var data = snapshot.val();
         $.each(data, function(key, value){
             if(value.status == "reserved"){
+                
                 $("#startSelect option[value = '"+key+"']").addClass("disabled");
             }
         });
