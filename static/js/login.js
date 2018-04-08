@@ -63,33 +63,39 @@ function generateCurrentReservation(data){
     var source = $("#currentRes-template").html();
     var template = Handlebars.compile(source);
     $.each(data, function(key, value){
-        var context = { 
-            time: key,
-            lotName: value.lotName,
-            duration: value.duration + " min",
-            amountDue: "$" + value.amountDue
-        };
-        var html = template(context);
-        $("#reservationContent").append(html);
+        if(key != "dummy"){
+            var context = { 
+                time: key,
+                lotName: value.lotName,
+                duration: value.duration + " hr",
+                amountDue: "$" + value.amountDue
+            };
+            var html = template(context);
+            $("#reservationContent").append(html);
+        }
+        
     });
 }
 function generateHistory(data){
     var source = $("#history-template").html();
     var template = Handlebars.compile(source);
     $.each(data, function(key, value){
-        var context = {
-            time: key,
-            lotName: value.lotName,
-            duration: value.duration + " min",
-            amountDue: "$" + value.amountDue
+        if(key != "dummy"){
+            var context = {
+                time: key,
+                lotName: value.lotName,
+                duration: value.duration + " min",
+                amountDue: "$" + value.amountDue
+            }
+            if(value.paid){
+                context.paid = "true";
+            }else{
+                context.paid = "false";
+            }
+            var html = template(context);
+            $("#historyContent").append(html);
         }
-        if(value.paid){
-            context.paid = "true";
-        }else{
-            context.paid = "false";
-        }
-        var html = template(context);
-        $("#historyContent").append(html);
+        
     });
     
 }
@@ -123,14 +129,16 @@ function generateReviews(data){
     var source = $("#reviews-template").html();
     var template = Handlebars.compile(source);
     $.each(data, function(key, value){
-        var context = {
-            time: key,
-            lotName: value.parkingLot,
-            duration: value.duration,
-            comment: value.comment
-        };
-        var html = template(context);
-        $("#reviewsContent").append(html);
+        if(key!="dummy"){
+            var context = {
+                time: key,
+                lotName: value.parkingLot,
+                duration: value.duration,
+                comment: value.comment
+            };
+            var html = template(context);
+            $("#reviewsContent").append(html);
+        }
     });
 }
 function login(){
@@ -166,8 +174,18 @@ function create(){
     if(!error){
         var object = {};
         object[email.split(".")[0]] = {
-            watchList: {
-                example: "nothing"
+            accountType: "Parker",
+            currentRes: {
+                dummy: "dummy"
+            },
+            favorite: {
+                default: "dummy"
+            },
+            history: {
+                dummy: "dummy"
+            },
+            reviews: {
+                dummy: "dummy"
             }
         };
         database.ref("users").update(object);

@@ -30,10 +30,18 @@ $(document).ready(function(){
             value.slots = {};
             console.log(value);
             for(var i = 1; i < 10; i++){
-                value.slots["A-" + i] = {
-                    status: "open",
-                    users: "none"
-                };
+                value.slots["A-" + i] = {};
+                value.slots["A-" + i]["04-08-18"] = {};
+                value.slots["A-" + i]["04-09-18"] = {};
+                value.slots["A-" + i]["04-10-18"] = {};
+                $.each(value.slots["A-"+i], function(key){
+                    for(var j = 0; j < 24; j++){
+                        value.slots["A-"+i][j]={
+                            status: "open",
+                            user: "none"
+                        }
+                    }
+                });
             }
             obj[key] = value;
         });

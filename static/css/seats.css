@@ -1,0 +1,39 @@
+#seatsLabel{
+    text-align: center;
+    color: white;
+    background-color: rgb(37, 37, 71);
+    border-bottom: 10px solid rgb(72, 72, 121);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.status{
+    text-align: right;
+
+}
+.slot{
+    display: block;
+    padding: 0 20px;
+    background-color: rgb(37, 37, 71);
+    color: white;
+    line-height: 1.0;
+    border-bottom: 5px solid rgb(72,72,121);
+}
+.slot:hover{
+    background-color: rgb(48, 48, 121);
+}
+.slot .row{
+    margin-bottom: 0;
+}
+#lotNameDiv{
+    text-align: center;
+}
+#favoriteButton{
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    text-align: center;
+}
+.noneDisplay{
+    display: none;
+}
